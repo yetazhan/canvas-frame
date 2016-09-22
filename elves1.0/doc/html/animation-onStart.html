@@ -1,0 +1,77 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8">
+<title>animation-onStart</title>
+<meta name="keywords" content="" />
+<meta name="description" content="elves.js" /> 
+<meta name="author" content="elves Team" />
+<link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+<h1><strong>onStart()</strong></h1>
+<h2>概述</h2>
+<p>animation方法之一。动画开始执行前先执行此方法。</p>
+
+<h3>描述:</h3>
+<p>在动画执行前先将$desk@card2实体删除。</p>
+<h4>HTML 代码:</h4>
+<pre>&lt;canvas id="test" width="507px" height="320px" style="border:1px solid #F00"&gt;</pre>
+<h4>elves 代码:</h4>
+<pre>
+$(function() {
+	$.cacheImg('porker', 'img/img.png');   <span class="green">//预先加载img资源</span>
+	
+	var card1 = {   <span class="green">//定义entity()方法的参数</span>
+		sx : 0,   <span class="green">//可选。原图片开始剪切的 x 坐标位置。</span>
+		sy : 0,   <span class="green">//可选。原图片开始剪切的 y 坐标位置。</span>
+		sw : 50,    <span class="green">//可选。原图片被剪切的宽度。</span>
+		sh : 30,    <span class="green">//可选。原图片被剪切的高度。</span>
+		dx : 0,    <span class="green">//在画布上放置图像的 x 坐标位置。</span>
+		dy : 0,    <span class="green">//在画布上放置图像的 y 坐标位置。</span>
+		dw : 50,   <span class="green">//可选。在画布上要使用的图像的宽度。（伸展或缩小图像）</span>
+		dh : 30,   <span class="green">//可选。在画布上要使用的图像的高度。（伸展或缩小图像）</span>
+		type : 'img',   <span class="green">//创建实体的类型，为img型</span>
+		res : 'porker',   <span class="green">//预先加载img资源的名称</span>
+		name : 'card1'   <span class="green">//实体的名称，便于选择器选择，例如：$("$desk@card1")</span>
+	};
+	
+    	var card2 = {
+		sx : 50,
+		sy : 30,
+		sw : 50,
+		sh : 30,
+		dx : 40,
+		dy : 10,
+		dw : 50,
+		dh : 30,
+		type : 'img',
+		res : 'porker',
+		name : 'card2'
+	};
+	<span class="green">//创建一个名为'desk'的canvas  content对象</span>
+	$("#test").asCanvas({
+		name : 'desk'
+	});
+	
+	<span class="green">//创建$desk@card1实体并画在画布上。</span>
+	$("$desk").entity(card1).flush();
+	
+	<span class="green">//创建$desk@card2实体并画在画布上。</span>
+	$("$desk").entity(card2).flush();
+	
+	$("$desk@card1").animation().to({
+		translateX : 200,
+		translateY : 100,
+		rotate : 90
+	}, 1000).delay(1000).onStart(function(){    <span class="green">//delay(1000),动画延迟1000毫秒执行。</span>
+		$("$desk@card2").remove();   <span class="green">//在动画执行前先将$desk@card2实体删除。</span>
+	}).start();
+    
+    
+});
+
+</pre>
+
+</body>
+</html>

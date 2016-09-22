@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0;">
+<title>demo</title>
+<script type="text/javascript" src="../../src/elves.js"></script>
+<script type="text/javascript" src="../../src/plugin/dom.js"></script>
+<script type="text/javascript">
+$(function() {
+	//创建一个名为'desk'的canvas  content对象
+	$("#test").asCanvas({
+		name : 'desk'
+	});
+	
+	//在这个对象上画个的圆形，圆心坐标（20px,20px）,半径5px,颜色红色
+	$("$desk").arc(20,20,5,"#f00"); 
+	
+    $("$desk").stop();  //通过stop()方法的设置，使flush()方法禁用
+	
+    setTimeout(function(){
+		$("$desk").flush();  //一秒钟后，未能清空"$desk"内的像素。
+	},1000)
+});
+
+</script>
+
+</head>
+<body>
+<canvas id="test" width="507px" height="320px" style="border:1px solid #F00"></canvas>
+</body>
+</html>

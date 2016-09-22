@@ -1,0 +1,39 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8">
+<title>canvas-flush</title>
+<meta name="keywords" content="" />
+<meta name="description" content="elves.js" /> 
+<meta name="author" content="elves Team" />
+<link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+<h1><strong>flush()</strong></h1>
+<h2>概述</h2>
+<p>canvas方法之一。清空画布内的像素，默认该方法可用，可通过stop()设置为禁用</p>
+
+<h3>描述:</h3>
+<p>清空"$desk"内的像素。</p>
+<h4>HTML 代码:</h4>
+<pre>&lt;canvas id="test" width="507px" height="320px" style="border:1px solid #F00"&gt;</pre>
+<h4>elves 代码:</h4>
+<pre>
+$(function() {
+	<span class="green">//创建一个名为'desk'的canvas  content对象</span>
+	$("#test").asCanvas({
+		name : 'desk'
+	});
+	
+	<span class="green">//在这个对象上画个的圆形，圆心坐标（20px,20px）,半径5px,颜色红色</span>
+	$("$desk").arc(20,20,5,"#f00"); 
+	
+	<span class="green">//一秒钟后，清除画布内的像素</span>
+	setTimeout(function(){
+		$("$desk").flush();  <span class="green">//清空"$desk"内的像素。</span>
+	},1000)
+});
+</pre>
+
+</body>
+</html>

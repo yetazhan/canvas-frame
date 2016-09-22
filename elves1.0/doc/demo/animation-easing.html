@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0;">
+<title>demo</title>
+<script type="text/javascript" src="../../src/elves.js"></script>
+<script type="text/javascript" src="../../src/plugin/dom.js"></script>
+<script type="text/javascript">
+$(function() {
+	$.cacheImg('porker', 'img/img.png');   //预先加载img资源
+	
+	var card1 = {   //定义entity()方法的参数
+		sx : 0,   //可选。原图片开始剪切的 x 坐标位置。
+		sy : 0,   //可选。原图片开始剪切的 y 坐标位置。
+		sw : 50,    //可选。原图片被剪切的宽度。
+		sh : 30,    //可选。原图片被剪切的高度。
+		dx : 0,    //在画布上放置图像的 x 坐标位置。
+		dy : 0,    //在画布上放置图像的 y 坐标位置。
+		dw : 50,   //可选。在画布上要使用的图像的宽度。（伸展或缩小图像）
+		dh : 30,   //可选。在画布上要使用的图像的高度。（伸展或缩小图像）
+		type : 'img',   //创建实体的类型，为img型
+		res : 'porker',   //预先加载img资源的名称
+		name : 'card1'   //实体的名称，便于选择器选择，例如：$("$desk@card1")，
+	};
+	
+	var card2 = {
+		sx : 50,
+		sy : 30,
+		sw : 50,
+		sh : 30,
+		dx : 40,
+		dy : 10,
+		dw : 50,
+		dh : 30,
+		type : 'img',
+		res : 'porker',
+		name : 'card2'
+	};
+	
+	var card3 = {
+		sx : 100,  //
+		sy : 60,
+		sw : 50,
+		sh : 30,
+		dx : 100,
+		dy : 0,
+		dw : 50,
+		dh : 30,
+		type : 'img',
+		res : 'porker',
+		name : 'card3'
+	};
+	
+	
+	//创建一个名为'desk'的canvas  content对象
+	$("#test").asCanvas({
+		name : 'desk'
+	});
+	
+	//在$("$desk")中创建一个实体
+	$("$desk").entity(card1);
+	
+	//刷新画布
+	$("$desk").flush();
+    
+    $("$desk@card1").animation().to({
+		dx : 200 ,
+		dy : 200 
+	}, 2000)
+	.easing( $.Easing.Elastic.InOut )   //动画按照Elastic.InOut加速模式运行
+	.start();    
+});
+</script>
+
+</head>
+<body>
+<canvas id="test" width="507px" height="320px" style="border:1px solid #F00"></canvas>
+<div id="moveLog"></div>
+</body>
+</html>

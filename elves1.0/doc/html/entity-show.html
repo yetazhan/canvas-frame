@@ -1,0 +1,66 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8">
+<title>entity-show</title>
+<meta name="keywords" content="" />
+<meta name="description" content="elves.js" /> 
+<meta name="author" content="elves Team" />
+<link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+<h1><strong>show()</strong></h1>
+<h2>概述</h2>
+<p>entity方法之一。将匹配的实体在画布上显示。</p>
+
+<h3>描述:</h3>
+<p>将匹配的实体在画布上显示。</p>
+<h4>HTML 代码:</h4>
+<pre>&lt;canvas id="test" width="507px" height="320px" style="border:1px solid #F00"&gt;</pre>
+<h4>elves 代码:</h4>
+<pre>
+$(function() {
+	$.cacheImg('porker', 'img/img.png');   <span class="green">//预先加载img资源</span>
+	
+	var card1 = {   <span class="green">//定义entity()方法的参数</span>
+		sx : 0,   <span class="green">//可选。原图片开始剪切的 x 坐标位置。</span>
+		sy : 0,   <span class="green">//可选。原图片开始剪切的 y 坐标位置。</span>
+		sw : 50,    <span class="green">//可选。原图片被剪切的宽度。</span>
+		sh : 30,    <span class="green">//可选。原图片被剪切的高度。</span>
+		dx : 0,    <span class="green">//在画布上放置图像的 x 坐标位置。</span>
+		dy : 0,    <span class="green">//在画布上放置图像的 y 坐标位置。</span>
+		dw : 50,   <span class="green">//可选。在画布上要使用的图像的宽度。（伸展或缩小图像）</span>
+		dh : 30,   <span class="green">//可选。在画布上要使用的图像的高度。（伸展或缩小图像）</span>
+		type : 'img',   <span class="green">//创建实体的类型，为img型</span>
+		res : 'porker',   <span class="green">//预先加载img资源的名称</span>
+		name : 'card1'   <span class="green">//实体的名称，便于选择器选择，例如：$("$desk@card1")</span>
+	};
+	
+	<span class="green">//创建一个名为'desk'的canvas  content对象</span>
+	$("#test").asCanvas({
+		name : 'desk'
+	});
+	
+	<span class="green">//在$("$desk")中创建一个实体</span>
+	$("$desk").entity(card1);
+	
+	<span class="green">//选择这个实体，并画在画布上。</span>
+	$("$desk@card1").flush();
+    
+    <span class="green">//一秒钟后，隐藏实体</span>
+	setTimeout(function(){
+		$("$desk@card1").hide();   <span class="green">//隐藏$("$desk@card1")实体</span>
+		$("$desk").flush()    <span class="green">//刷新$("$desk")画布</span>
+	},1000); 
+    
+    <span class="green">//两秒钟后，显示实体</span>
+	setTimeout(function(){
+		$("$desk@card1").show();   <span class="green">//显示$("$desk@card1")实体</span>
+		$("$desk").flush()    <span class="green">//刷新$("$desk")画布</span>
+	},2000); 
+});
+
+</pre>
+
+</body>
+</html>

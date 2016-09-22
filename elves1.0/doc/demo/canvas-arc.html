@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0;">
+<title>demo</title>
+<script type="text/javascript" src="../../src/elves.js"></script>
+<script type="text/javascript" src="../../src/plugin/dom.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("#test").asCanvas({  //选择id为test的canvas元素，然后为这个canvas元素创建content对象。
+		name : 'desk'  //   将创建content对象命名为desk,便于选择器选择。如下例$("$desk")。
+	}).arc(10,20,5,"#09C");  //  在content对象上画圆。
+	
+	$("$desk").arc(20,20,5,"#f00");  //已有名为desk的canvas元素content对象，$("$desk")就可选择到。
+});
+</script>
+
+</head>
+<body>
+<canvas id="test" width="507px" height="320px" style="border:1px solid #F00"></canvas>
+</body>
+</html>
